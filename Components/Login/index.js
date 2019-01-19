@@ -15,10 +15,28 @@ import {
   Header
 } from "native-base";
 
+import authstore from "../../store/authStore";
+
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
   static navigationOptions = {
     title: "Login"
   };
+
+  loginUserData() {
+    authstore.loginUser(this.state, this.props.navigation);
+  }
+
+  registerUserData() {
+    authstore.registerUser(this.state, this.props.navigation);
+  }
+
   render() {
     return (
       <Content>
@@ -38,7 +56,12 @@ class Login extends Component {
                     marginBottom: 10
                   }}
                 >
-                  <Input autoCorrect={false} autoCapitalize="none" />
+                  <Input
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={this.state.username}
+                    onChangeText={username => this.setState({ username })}
+                  />
                 </Item>
                 <Body>
                   <Label style={{ color: "white" }}>Password</Label>
@@ -51,23 +74,17 @@ class Login extends Component {
                     autoCorrect={false}
                     secureTextEntry
                     autoCapitalize="none"
+                    value={this.state.password}
+                    onChangeText={password => this.setState({ password })}
                   />
                 </Item>
               </Form>
             </Body>
           </ListItem>
-          <Button
-            full
-            success
-            onPress={() => this.props.navigation.replace("CoffeeList")}
-          >
+          <Button full success onPress={() => this.loginUserData()}>
             <Text>Login</Text>
           </Button>
-          <Button
-            full
-            warning
-            onPress={() => this.props.navigation.replace("CoffeeList")}
-          >
+          <Button full warning onPress={() => this.registerUserData()}>
             <Text>Register</Text>
           </Button>
         </List>

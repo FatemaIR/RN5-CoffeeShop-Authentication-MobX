@@ -10,12 +10,13 @@ import CoffeeStore from "../../store/coffeeStore";
 // Component
 import CoffeeItem from "./CoffeeItem";
 import Quantity from "../Quantity";
+import CoffeeFooter from "../CoffeeFooter";
 
 class CoffeeList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "Coffee List",
     headerLeft: null,
-    headerRight: <Quantity route="CoffeeCart" />
+    headerRight: <Quantity />
   });
   render() {
     const coffeeshops = CoffeeStore.coffeeshops;
@@ -28,6 +29,7 @@ class CoffeeList extends Component {
     return (
       <Content>
         <List>{ListItems}</List>
+        <CoffeeFooter />
       </Content>
     );
   }

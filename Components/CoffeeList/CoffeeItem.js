@@ -10,6 +10,8 @@ import styles from "./styles";
 // Navigation
 import { withNavigation } from "react-navigation";
 
+import CoffeeFooter from "../CoffeeFooter/index";
+
 class CoffeeItem extends Component {
   handlePress() {
     this.props.navigation.navigate("CoffeeDetail", {
